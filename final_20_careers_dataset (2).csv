@@ -8,7 +8,7 @@ career_id,career_name,category,stream_required,subjects_required,degree_required
 7,Doctor,Non-Tech,Science,PCB,MBBS,NEET,5.5,Diagnosis; Patient Care; Medical Knowledge,8,High,Low,Very High,Very High,High,Yes,Growing
 8,Chartered Accountant,Non-Tech,Commerce,Accounts/Maths,CA,CA Foundation,4,Accounting; Taxation; Auditing,7,High,Medium,High,High,Medium,Yes,Stable
 9,Lawyer,Non-Tech,Science Commerce Arts,None,LLB,CLAT,5,Legal Knowledge; Research; Argument,6,High,Medium,High,High,Medium,Yes,Stable
-10,Civil Services Officer,Non-Tech,Any,None,Graduation,UPSC,2,Administration; Leadership; Governance,10,High,Low,Very High,Very High,Low,Yes,Stable
+10,Civil Services Officer,Non-Tech,Science Commerce Arts,None,Graduation,UPSC,2,Administration; Leadership; Governance,10,High,Low,Very High,Very High,Low,Yes,Stable
 11,Investment Banker,Non-Tech,Commerce,Maths,BBA/MBA,None,5,Finance; Analysis; Communication,12,High,Low,High,High,High,Yes,Growing
 12,Psychologist,Non-Tech,Arts,Psychology,BA/MSc Psychology,None,5,Counselling; Empathy; Research,4,Medium,High,Medium,Medium,Medium,Yes,Growing
 13,Digital Marketing Manager,Non-Tech,Science Commerce Arts,None,BBA/BCom/Certification,None,3,SEO; Marketing; Analytics,6,High,High,Medium,High,Low,Yes,Growing
