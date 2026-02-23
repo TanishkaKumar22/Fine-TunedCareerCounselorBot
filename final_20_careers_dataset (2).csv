@@ -7,15 +7,15 @@ career_id,career_name,category,stream_required,subjects_required,degree_required
 6,Civil Engineer,Tech,Science,PCM,B.Tech,University Exam,4,Construction; Planning; Site Management,5,High,Low,Medium,High,Medium,Yes,Stable
 7,Doctor,Non-Tech,Science,PCB,MBBS,NEET,5.5,Diagnosis; Patient Care; Medical Knowledge,8,High,Low,Very High,Very High,High,Yes,Growing
 8,Chartered Accountant,Non-Tech,Commerce,Accounts/Maths,CA,CA Foundation,4,Accounting; Taxation; Auditing,7,High,Medium,High,High,Medium,Yes,Stable
-9,Lawyer,Non-Tech,Any,None,LLB,CLAT,5,Legal Knowledge; Research; Argument,6,High,Medium,High,High,Medium,Yes,Stable
+9,Lawyer,Non-Tech,Science Commerce Arts,None,LLB,CLAT,5,Legal Knowledge; Research; Argument,6,High,Medium,High,High,Medium,Yes,Stable
 10,Civil Services Officer,Non-Tech,Any,None,Graduation,UPSC,2,Administration; Leadership; Governance,10,High,Low,Very High,Very High,Low,Yes,Stable
 11,Investment Banker,Non-Tech,Commerce,Maths,BBA/MBA,None,5,Finance; Analysis; Communication,12,High,Low,High,High,High,Yes,Growing
 12,Psychologist,Non-Tech,Arts,Psychology,BA/MSc Psychology,None,5,Counselling; Empathy; Research,4,Medium,High,Medium,Medium,Medium,Yes,Growing
-13,Digital Marketing Manager,Non-Tech,Any,None,BBA/BCom/Certification,None,3,SEO; Marketing; Analytics,6,High,High,Medium,High,Low,Yes,Growing
-14,Entrepreneur,Hybrid,Any,None,Optional,None,Variable,Leadership; Risk Taking; Management,Variable,High,Variable,High,High,Variable,Yes,Growing
+13,Digital Marketing Manager,Non-Tech,Science Commerce Arts,None,BBA/BCom/Certification,None,3,SEO; Marketing; Analytics,6,High,High,Medium,High,Low,Yes,Growing
+14,Entrepreneur,Hybrid,Science Commerce Arts,None,Optional,None,Variable,Leadership; Risk Taking; Management,Variable,High,Variable,High,High,Variable,Yes,Growing
 15,Architect,Hybrid,Science,PCM,B.Arch,NATA,5,Design; Creativity; Planning,6,High,Medium,High,High,High,Yes,Growing
 16,Commercial Pilot,Tech,Science,PCM,Pilot Training,CPL Exam,3,Flying Skills; Decision Making,12,High,Low,High,High,Very High,Yes,Growing
 17,Biotechnology Scientist,Tech,Science,PCB,BSc/MSc Biotech,None,5,Lab Skills; Research; Analysis,5,Medium,Medium,High,Medium,Medium,Yes,Growing
-18,UI/UX Designer,Tech,Any,None,B.Des/BTech,None,3,Design Thinking; Prototyping; Creativity,7,High,High,Medium,High,Low,Yes,Growing
+18,UI/UX Designer,Tech,Science Commerce Arts,None,B.Des/BTech,None,3,Design Thinking; Prototyping; Creativity,7,High,High,Medium,High,Low,Yes,Growing
 19,Financial Analyst,Non-Tech,Commerce,Maths,BCom/MBA,None,3,Financial Modelling; Excel; Analysis,6,High,Medium,Medium,High,Low,Yes,Growing
-20,Professor/Lecturer,Non-Tech,Any,None,Master’s + PhD,NET/SET,7,Teaching; Research; Communication,5,Medium,High,High,Medium,Medium,Yes,Stable
+20,Professor/Lecturer,Non-Tech,Science Commerce Arts,None,Master’s + PhD,NET/SET,7,Teaching; Research; Communication,5,Medium,High,High,Medium,Medium,Yes,Stable
