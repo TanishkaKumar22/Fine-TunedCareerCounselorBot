@@ -11,10 +11,10 @@ career_id,career_name,category,stream_required,subjects_required,degree_required
 10,Civil Services Officer,Non-Tech,Any,None,Graduation,UPSC,2,Administration; Leadership; Governance,10,High,Low,Very High,Very High,Low,Yes,Stable
 11,Investment Banker,Non-Tech,Commerce,Maths,BBA/MBA,None,5,Finance; Analysis; Communication,12,High,Low,High,High,High,Yes,Growing
 12,Psychologist,Non-Tech,Arts,Psychology,BA/MSc Psychology,None,5,Counselling; Empathy; Research,4,Medium,High,Medium,Medium,Medium,Yes,Growing
-13,Digital Marketing Manager,Non-Tech,Any,None,BBA/BCom/Certification,None,3,SEO; Marketing; Analytics,6,High,High,Medium,High,Low,Yes,Growing
+13,Digital Marketing Manager,Tech,Any,None,BBA/BCom/Certification,None,3,SEO; Marketing; Analytics,6,High,High,Medium,High,Low,Yes,Growing
 14,Entrepreneur,Hybrid,Any,None,Optional,None,Variable,Leadership; Risk Taking; Management,Variable,High,Variable,High,High,Variable,Yes,Growing
 15,Architect,Hybrid,Science,PCM,B.Arch,NATA,5,Design; Creativity; Planning,6,High,Medium,High,High,High,Yes,Growing
-16,Commercial Pilot,Tech,Science,PCM,Pilot Training,CPL Exam,3,Flying Skills; Decision Making,12,High,Low,High,High,Very High,Yes,Growing
+16,Commercial Pilot,Non-Tech,Science,PCM,Pilot Training,CPL Exam,3,Flying Skills; Decision Making,12,High,Low,High,High,Very High,Yes,Growing
 17,Biotechnology Scientist,Tech,Science,PCB,BSc/MSc Biotech,None,5,Lab Skills; Research; Analysis,5,Medium,Medium,High,Medium,Medium,Yes,Growing
 18,UI/UX Designer,Tech,Any,None,B.Des/BTech,None,3,Design Thinking; Prototyping; Creativity,7,High,High,Medium,High,Low,Yes,Growing
 19,Financial Analyst,Non-Tech,Commerce,Maths,BCom/MBA,None,3,Financial Modelling; Excel; Analysis,6,High,Medium,Medium,High,Low,Yes,Growing
