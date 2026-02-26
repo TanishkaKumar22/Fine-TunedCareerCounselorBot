@@ -1,466 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Career Counselor Chatbot</title>
-  <style>
-    :root {
-      --bg: #f7f8fa;
-      --panel: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --primary: #2563eb;
-      --primary-soft: #dbeafe;
-      --border: #e5e7eb;
-      --user-bubble: #eff6ff;
-      --bot-bubble: #ffffff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Counselor Bot</title>
 
-    * { box-sizing: border-box; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: grid;
-      place-items: center;
-      padding: 1rem;
-    }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Inter",sans-serif;
+}
 
-    .app {
-      width: min(940px, 100%);
-      height: min(92vh, 860px);
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      overflow: hidden;
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-    }
+body{
+display:flex;
+height:100vh;
+background:linear-gradient(135deg,#eef2ff,#f8fafc);
+overflow:hidden;
+}
 
-    .sidebar {
-      border-right: 1px solid var(--border);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      background: #fcfcfd;
-    }
+/* Sidebar */
+.sidebar{
+width:270px;
+background:#0f172a;
+color:white;
+display:flex;
+flex-direction:column;
+padding:20px;
+}
 
-    .brand {
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
+.sidebar h2{
+font-size:18px;
+margin-bottom:18px;
+}
 
-    .sub {
-      margin-top: 0.15rem;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.35;
-    }
+.new-chat{
+padding:12px;
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+border:none;
+border-radius:12px;
+color:white;
+cursor:pointer;
+margin-bottom:18px;
+transition:0.3s;
+}
 
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: #166534;
-      background: #dcfce7;
-      border: 1px solid #bbf7d0;
-      border-radius: 999px;
-      width: fit-content;
-      padding: 0.25rem 0.6rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
+.new-chat:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(79,70,229,0.4);
+}
 
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #22c55e;
-    }
+.chat-list{
+flex:1;
+overflow-y:auto;
+}
 
-    .chip-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
+.chat-item{
+padding:10px;
+border-radius:10px;
+cursor:pointer;
+font-size:14px;
+color:#cbd5e1;
+transition:0.2s;
+}
 
-    .chip {
-      border: 1px solid var(--border);
-      background: #fff;
-      border-radius: 999px;
-      padding: 0.35rem 0.65rem;
-      cursor: pointer;
-      font-size: 0.78rem;
-      color: #334155;
-    }
+.chat-item:hover{
+background:#1e293b;
+}
 
-    .chip:hover {
-      border-color: #bfdbfe;
-      background: #eff6ff;
-    }
+.chat-item.active{
+background:#334155;
+}
 
-    .side-actions {
-      margin-top: auto;
-      display: grid;
-      gap: 0.5rem;
-    }
+/* Main */
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+background:white;
+}
 
-    button {
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.84rem;
-      cursor: pointer;
-    }
+.header{
+padding:20px 30px;
+font-weight:600;
+border-bottom:1px solid #e5e7eb;
+}
 
-    button:hover {
-      background: #f9fafb;
-    }
+.chat-container{
+flex:1;
+padding:40px 60px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+}
 
-    .chat-area {
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      min-width: 0;
-    }
+.message{
+max-width:55%;
+padding:16px 18px;
+border-radius:18px;
+margin-bottom:18px;
+font-size:14px;
+line-height:1.6;
+animation:fadeIn 0.3s ease;
+}
 
-    .chat-header {
-      padding: 0.9rem 1rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
 
-    .chat-header h1 {
-      font-size: 0.95rem;
-      margin: 0;
-      font-weight: 650;
-    }
+.user{
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:white;
+align-self:flex-end;
+border-bottom-right-radius:6px;
+}
 
-    .messages {
-      padding: 1rem;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      background: linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
-    }
+.bot{
+background:#f1f5f9;
+color:#111827;
+align-self:flex-start;
+border-bottom-left-radius:6px;
+}
 
-    .bubble {
-      max-width: min(80%, 700px);
-      border: 1px solid var(--border);
-      padding: 0.75rem 0.85rem;
-      border-radius: 12px;
-      line-height: 1.45;
-      white-space: pre-wrap;
-      font-size: 0.92rem;
-    }
+.input-area{
+padding:25px 50px;
+border-top:1px solid #e5e7eb;
+display:flex;
+gap:12px;
+}
 
-    .bot { background: var(--bot-bubble); align-self: flex-start; }
-    .user { background: var(--user-bubble); align-self: flex-end; border-color: #bfdbfe; }
+.input-area input{
+flex:1;
+padding:16px;
+border-radius:16px;
+border:1px solid #d1d5db;
+font-size:14px;
+}
 
-    .typing {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      color: var(--muted);
-      font-size: 0.8rem;
-      padding: 0.2rem 0.1rem;
-    }
+.input-area input:focus{
+outline:none;
+border-color:#2563eb;
+box-shadow:0 0 0 4px rgba(37,99,235,0.15);
+}
 
-    .typing span {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #9ca3af;
-      animation: pulse 1s infinite ease-in-out;
-    }
+.input-area button{
+padding:16px 22px;
+border-radius:16px;
+border:none;
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
 
-    .typing span:nth-child(2) { animation-delay: 0.15s; }
-    .typing span:nth-child(3) { animation-delay: 0.3s; }
-
-    @keyframes pulse {
-      0%, 80%, 100% { transform: translateY(0); opacity: 0.45; }
-      40% { transform: translateY(-2px); opacity: 1; }
-    }
-
-    .composer {
-      border-top: 1px solid var(--border);
-      padding: 0.85rem;
-      display: grid;
-      gap: 0.55rem;
-    }
-
-    .quick-prompts {
-      display: flex;
-      gap: 0.45rem;
-      flex-wrap: wrap;
-    }
-
-    .quick-btn {
-      font-size: 0.75rem;
-      padding: 0.3rem 0.55rem;
-      border-radius: 999px;
-      background: #fff;
-    }
-
-    .input-row {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 0.55rem;
-    }
-
-    textarea {
-      resize: none;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.65rem 0.75rem;
-      font: inherit;
-      min-height: 48px;
-      max-height: 150px;
-      outline: none;
-    }
-
-    textarea:focus {
-      border-color: #93c5fd;
-      box-shadow: 0 0 0 3px #eff6ff;
-    }
-
-    .send {
-      background: var(--primary);
-      color: #fff;
-      border-color: #1d4ed8;
-      min-width: 86px;
-    }
-
-    .send:hover { background: #1d4ed8; }
-
-    @media (max-width: 860px) {
-      .app { grid-template-columns: 1fr; height: 95vh; }
-      .sidebar { display: none; }
-    }
-  </style>
+.input-area button:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(79,70,229,0.35);
+}
+</style>
 </head>
+
 <body>
-  <main class="app">
-    <aside class="sidebar">
-      <section>
-        <div class="brand">Career Counselor AI</div>
-        <p class="sub">Minimalist chatbot for career planning, roadmap building, and role suggestions.</p>
-      </section>
-      <div class="status" id="statusPill"><span class="dot"></span><span>Backend Connected</span></div>
-      <section>
-        <p class="sub" style="margin:0 0 .55rem 0">Focus areas</p>
-        <div class="chip-grid" id="focusChips"></div>
-      </section>
-      <section class="side-actions">
-        <button id="newChatBtn">New chat</button>
-        <button id="exportBtn">Export transcript</button>
-      </section>
-    </aside>
 
-    <section class="chat-area">
-      <header class="chat-header">
-        <h1>Career chat session</h1>
-        <small id="sessionInfo" style="color:#6b7280">Local memory enabled</small>
-      </header>
+<div class="sidebar">
+<h2>Career Counselor Bot</h2>
+<button class="new-chat" onclick="createNewChat()">+ New Chat</button>
+<div class="chat-list" id="chatList"></div>
+</div>
 
-      <section id="messages" class="messages" aria-live="polite"></section>
+<div class="main">
+<div class="header">AI Career Counselor</div>
+<div class="chat-container" id="chatContainer"></div>
 
-      <footer class="composer">
-        <div class="quick-prompts" id="quickPrompts"></div>
-        <div class="input-row">
-          <textarea id="userInput" placeholder="Ask about careers, skills, salaries, transitions, or learning roadmaps..."></textarea>
-          <button id="micBtn" title="Voice input">🎙️</button>
-          <button class="send" id="sendBtn">Send</button>
-        </div>
-      </footer>
-    </section>
-  </main>
+<div class="input-area">
+<input type="text" id="userInput" placeholder="Ask about careers...">
+<button onclick="sendMessage()">Send</button>
+</div>
+</div>
 
-  <script>
-    const API_ENDPOINTS = [
-      'http://localhost:8000/chat',
-      'http://127.0.0.1:5000/chat',
-      '/api/chat'
-    ];
+<script>
+let chats = JSON.parse(localStorage.getItem("careerChats")) || {};
+let currentChatId = null;
 
-    const focusAreas = ['Software', 'Data Science', 'UI/UX', 'Cybersecurity', 'Business', 'Healthcare', 'Civil Services'];
-    const starters = [
-      'Suggest careers for someone who likes problem solving and design.',
-      'Create a 6-month roadmap to become a data analyst.',
-      'How can I switch from mechanical engineering to software roles?'
-    ];
+function saveChats(){
+localStorage.setItem("careerChats",JSON.stringify(chats));
+}
 
-    const messagesEl = document.getElementById('messages');
-    const inputEl = document.getElementById('userInput');
-    const sendBtn = document.getElementById('sendBtn');
-    const micBtn = document.getElementById('micBtn');
-    const statusPill = document.getElementById('statusPill');
+function createNewChat(){
+const id="chat_"+Date.now();
+chats[id]=[];
+currentChatId=id;
+saveChats();
+renderChatList();
+renderMessages();
+botIntro();
+}
 
-    const STORAGE_KEY = 'career-chat-history-v1';
-    let inFlight = false;
+function botIntro(){
+addMessage("bot","Hi 👋 I'm your Career Counselor Bot. How can I help you today?");
+}
 
-    function appendMessage(text, role = 'bot') {
-      const div = document.createElement('div');
-      div.className = `bubble ${role}`;
-      div.textContent = text;
-      messagesEl.appendChild(div);
-      messagesEl.scrollTop = messagesEl.scrollHeight;
-      saveHistory();
-      return div;
-    }
+function renderChatList(){
+const chatList=document.getElementById("chatList");
+chatList.innerHTML="";
+Object.keys(chats).forEach(id=>{
+const div=document.createElement("div");
+div.className="chat-item"+(id===currentChatId?" active":"");
+div.innerText=chats[id][0]?.text?.slice(0,28)||"New Conversation";
+div.onclick=()=>{currentChatId=id;renderChatList();renderMessages();};
+chatList.appendChild(div);
+});
+}
 
-    function setTyping(show) {
-      const existing = document.getElementById('typing');
-      if (show && !existing) {
-        const t = document.createElement('div');
-        t.id = 'typing';
-        t.className = 'typing';
-        t.innerHTML = '<span></span><span></span><span></span> AI is thinking';
-        messagesEl.appendChild(t);
-      } else if (!show && existing) {
-        existing.remove();
-      }
-      messagesEl.scrollTop = messagesEl.scrollHeight;
-    }
+function renderMessages(){
+const container=document.getElementById("chatContainer");
+container.innerHTML="";
+if(!currentChatId)return;
+chats[currentChatId].forEach(msg=>{
+displayMessage(msg.sender,msg.text);
+});
+container.scrollTop=container.scrollHeight;
+}
 
-    function saveHistory() {
-      const data = [...messagesEl.querySelectorAll('.bubble')].map(el => ({
-        role: el.classList.contains('user') ? 'user' : 'assistant',
-        text: el.textContent
-      }));
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    }
+function addMessage(sender,text){
+chats[currentChatId].push({sender,text});
+saveChats();
+displayMessage(sender,text);
+renderChatList();
+}
 
-    function loadHistory() {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) {
-        appendMessage('Hi! I can help you discover career paths, required skills, and personalized learning plans. Tell me your interests, current education, and goals.');
-        return;
-      }
-      try {
-        JSON.parse(raw).forEach(m => appendMessage(m.text, m.role === 'user' ? 'user' : 'bot'));
-      } catch {
-        localStorage.removeItem(STORAGE_KEY);
-      }
-    }
+function displayMessage(sender,text){
+const container=document.getElementById("chatContainer");
+const div=document.createElement("div");
+div.className="message "+sender;
+div.innerText=text;
+container.appendChild(div);
+container.scrollTop=container.scrollHeight;
+}
 
-    function setupChips() {
-      const chipWrap = document.getElementById('focusChips');
-      focusAreas.forEach(label => {
-        const chip = document.createElement('button');
-        chip.className = 'chip';
-        chip.textContent = label;
-        chip.onclick = () => {
-          inputEl.value = `I am interested in ${label}. Suggest suitable career paths and first steps.`;
-          inputEl.focus();
-        };
-        chipWrap.appendChild(chip);
-      });
+async function sendMessage(){
+const input=document.getElementById("userInput");
+const text=input.value.trim();
+if(!text||!currentChatId)return;
 
-      const starterWrap = document.getElementById('quickPrompts');
-      starters.forEach(prompt => {
-        const btn = document.createElement('button');
-        btn.className = 'quick-btn';
-        btn.textContent = prompt.length > 52 ? prompt.slice(0, 52) + '…' : prompt;
-        btn.onclick = () => { inputEl.value = prompt; inputEl.focus(); };
-        starterWrap.appendChild(btn);
-      });
-    }
+addMessage("user",text);
+input.value="";
 
-    async function callBackend(userMessage) {
-      for (const endpoint of API_ENDPOINTS) {
-        try {
-          const resp = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              message: userMessage,
-              history: [...messagesEl.querySelectorAll('.bubble')].map(b => b.textContent)
-            })
-          });
+try{
+const response = await fetch("http://127.0.0.1:8000/chat", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ message: text })
+});
 
-          if (!resp.ok) continue;
-          const data = await resp.json();
-          if (data.reply || data.response || data.answer) {
-            statusPill.innerHTML = '<span class="dot"></span><span>Backend Connected</span>';
-            return data.reply || data.response || data.answer;
-          }
-        } catch {
-          // try next endpoint
-        }
-      }
+const data = await response.json();
+addMessage("bot", data.response);
 
-      statusPill.innerHTML = '<span class="dot" style="background:#f59e0b"></span><span>Offline Fallback</span>';
-      return 'I could not reach the backend API. Please start your model server on /api/chat, localhost:8000/chat, or 127.0.0.1:5000/chat. Meanwhile, tell me your interests and I can still suggest a general roadmap.';
-    }
+}catch(error){
+addMessage("bot","Unable to connect to backend at 127.0.0.1:8000");
+}
+}
 
-    async function sendMessage() {
-      const text = inputEl.value.trim();
-      if (!text || inFlight) return;
-      inFlight = true;
-      appendMessage(text, 'user');
-      inputEl.value = '';
-      setTyping(true);
-      const reply = await callBackend(text);
-      setTyping(false);
-      appendMessage(reply, 'bot');
-      inFlight = false;
-    }
+document.getElementById("userInput").addEventListener("keypress",function(e){
+if(e.key==="Enter"){sendMessage();}
+});
 
-    sendBtn.onclick = sendMessage;
-    inputEl.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
+if(Object.keys(chats).length===0){
+createNewChat();
+}else{
+currentChatId=Object.keys(chats)[0];
+renderChatList();
+renderMessages();
+}
+</script>
 
-    document.getElementById('newChatBtn').onclick = () => {
-      messagesEl.innerHTML = '';
-      localStorage.removeItem(STORAGE_KEY);
-      appendMessage('New session started. Share your background and target role, and I will build a focused plan.');
-    };
-
-    document.getElementById('exportBtn').onclick = () => {
-      const transcript = [...messagesEl.querySelectorAll('.bubble')]
-        .map(el => `${el.classList.contains('user') ? 'You' : 'Counselor'}: ${el.textContent}`)
-        .join('\n\n');
-      const blob = new Blob([transcript], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'career-chat-transcript.txt';
-      a.click();
-      URL.revokeObjectURL(a.href);
-    };
-
-    micBtn.onclick = () => {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        appendMessage('Speech recognition is not supported in this browser.', 'bot');
-        return;
-      }
-      const rec = new SpeechRecognition();
-      rec.lang = 'en-US';
-      rec.onresult = (ev) => {
-        inputEl.value = ev.results[0][0].transcript;
-        inputEl.focus();
-      };
-      rec.start();
-    };
-
-    setupChips();
-    loadHistory();
-  </script>
 </body>
 </html>
