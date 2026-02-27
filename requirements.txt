@@ -1,0 +1,23 @@
+# Core
+torch
+transformers
+accelerate
+bitsandbytes
+
+# Fine-tuning / LoRA
+peft
+trl
+unsloth
+
+# Backend
+fastapi
+uvicorn
+pydantic
+
+# Utilities
+numpy
+pandas
+scikit-learn
+
+# Optional (if using CORS for frontend)
+python-multipart
